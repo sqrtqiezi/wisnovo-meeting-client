@@ -49,11 +49,11 @@ page {
 }
 
 .btn-info {
-  color: #1F70A0;
-  background-color: #D7EDF6;
+  color: white;
+  background-color: #1F70A0;
 }
 
 .btn-success {
-  color: #577641;
-  background-color: #DDF0D9;
+  color: white;
+  background-color: #577641;
 }

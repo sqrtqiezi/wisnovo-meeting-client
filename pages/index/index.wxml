@@ -3,18 +3,15 @@
   <view class="header">
     <text>全部活动</text>
   </view>
-  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-  <block wx:else>
-    <navigator open-type="navigate" class="meeting-info"
-      url="/pages/meeting/meeting?id={{meeting.id}}"
-      wx:for="{{meetings}}" wx:key="meeting"
-      wx:for-index="idx" wx:for-item="meeting">
-      <image src="{{meeting.cover_small_url}}" />
-      <view class="meeting-content">
-        <view class="title">{{meeting.title}}</view>
-        <view class="extra">活动时间：{{meeting.started_at_short}}</view>
-      </view>
-    </navigator>
-    <button wx:if="{{currentPage < totalPages}}" class="btn-link" bindtap="loadMoreMeetings"> 点击加载更多活动 </button>
-  </block>
+  <navigator open-type="navigate" class="meeting-info"
+    url="/pages/meeting/meeting?id={{meeting.id}}"
+    wx:for="{{meetings}}" wx:key="meeting"
+    wx:for-index="idx" wx:for-item="meeting">
+    <image src="{{meeting.cover_small_url}}" />
+    <view class="meeting-content">
+      <view class="title">{{meeting.title}}</view>
+      <view class="extra">活动时间：{{meeting.started_at_short}}</view>
+    </view>
+  </navigator>
+  <button wx:if="{{currentPage < totalPages}}" class="btn-link" bindtap="loadMoreMeetings"> 点击加载更多活动 </button>
 </view>

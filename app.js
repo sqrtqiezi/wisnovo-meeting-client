@@ -1,3 +1,4 @@
+const api = require('./utils/api.js')
 //app.js
 App({
   onLaunch: function () {
@@ -6,12 +7,11 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
+    api.checkLogin().then(res => {
+      this.globalData.sessionKey = res.data.session_key;
+      this.globalData.accessKey = res.data.access_key;
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {

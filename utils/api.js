@@ -41,7 +41,35 @@ function getMeeting(id) {
   return baseRequest(api)
 }
 
+function checkLogin() {
+  return new Promise((resolve, reject) => {
+    wx.login({
+      success: res => {
+        if (res.code) {
+          //发起网络请求
+          wx.request({
+            url: `${BASE_URL}/api/mini_program/login`,
+            data: {
+              code: res.code
+            },
+            success: function(res) {
+              if (!!res.data.session_key) {
+                resolve(res)
+              } else {
+                console.log('获取用户登录态失败！', res)
+              }
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！', res)
+        }
+      }
+    })
+  })
+}
+
 module.exports = {
   getAllMeetings,
-  getMeeting
+  getMeeting,
+  checkLogin
 }
