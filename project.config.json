@@ -27,7 +27,14 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": 0,
+					"name": "活动详情页",
+					"pathName": "pages/meeting/meeting",
+					"query": "id=21"
+				}
+			]
 		}
 	}
 }

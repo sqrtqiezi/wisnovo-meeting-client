@@ -1,0 +1,40 @@
+Page {
+  background-color: white;
+}
+
+.header {
+  position: relative;
+}
+
+.header .cover {
+  width: 750rpx;
+  height: 375rpx;
+}
+
+.header .title {
+  position: absolute;
+  padding: 0 20rpx;
+  bottom: 20rpx;
+  left: 0;
+  color: white;
+}
+
+.meeting-info {
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+
+.meeting-info .extra {
+  font-size: .8em;
+  color: #626B6F;
+}
+
+.meeting-info .btn-link {
+  background-color: white;
+}
+
+.meeting-info .control-panel {
+  display: flex;
+  justify-content: center;
+  margin-top: 30rpx;
+}

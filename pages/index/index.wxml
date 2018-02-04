@@ -1,8 +1,12 @@
 <!--index.wxml-->
 <view class="container">
+  <view class="header">
+    <text>全部活动</text>
+  </view>
   <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
   <block wx:else>
-    <navigator open-type="navigate" class="meeting-info" url="/pages/logos/logos"
+    <navigator open-type="navigate" class="meeting-info"
+      url="/pages/meeting/meeting?id={{meeting.id}}"
       wx:for="{{meetings}}" wx:key="meeting"
       wx:for-index="idx" wx:for-item="meeting">
       <image src="{{meeting.cover_small_url}}" />

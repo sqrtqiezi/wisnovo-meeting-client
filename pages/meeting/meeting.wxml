@@ -1,0 +1,39 @@
+<view class="header">
+  <image class="cover" src="{{cover_small_url}}"></image>
+  <text class="title">{{title}}</text>
+</view>
+<view class="container">
+  <view wx:if="{{loaded}}" class="meeting-info">
+    <view class="extra">
+      <text>活动时间：{{started_at}} - {{finished_at}}</text>
+    </view>
+    <view class="extra">
+      活动地址：{{address}}
+    </view>
+    <view wx:if="{{is_require_charge}}" class="extra">
+      报名费: {{charge}} 元
+    </view>
+    <button wx:if="{{!isShowDescription}}" bindtap="showDescription" class="btn-link">加载更多详情</button>
+    <block wx:else>
+      <view class="extra">
+        <map id="map"
+          longitude="{{lng}}"
+          latitude="{{lat}}"
+          markers="{{markers}}"
+          scale="13"
+          style="width: 100%; height: 300rpx;"
+        ></map>
+      </view>
+      <view class="extra">
+        详情：
+        <import src="../../wxmlify/wxmlify.wxml" />
+        <template is="wxmlify" data="{{nodes}}"></template>
+      </view>
+    </block>
+    <view class="control-panel">
+      <button class="btn-sm btn-primary" bindtap="handleSignUp">报名</button>
+      <button class="btn-sm btn-info" bindtap="hanldeCheckIn">签到</button>
+      <button class="btn-sm btn-success">互动</button>
+    </view>
+  </view>
+</view>

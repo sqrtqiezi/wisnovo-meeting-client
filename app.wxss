@@ -1,6 +1,7 @@
 /*
   app.wxss
   $backgroundColor: #F4F5F9;
+  $brandPrimary: #BB2843;
 */
 page {
   background-color: #F4F5F9;
@@ -16,13 +17,43 @@ page {
   box-sizing: border-box;
 }
 
+.container .header {
+  margin-bottom: 20rpx;
+}
+
+.container .header text {
+  color: #838B95;
+}
+
+.btn-sm {
+  display: inline-block;
+  font-size: .6em;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
 .btn-link {
   border-style: none;
-  background: #F4F5F9;
+  background-color: #F4F5F9;
   color: #838B95;
   font-size: .8em;
 }
 
 .btn-link::after {
   border-style: none;
+}
+
+.btn-primary {
+  color: white;
+  background-color: #BB2843;
+}
+
+.btn-info {
+  color: #1F70A0;
+  background-color: #D7EDF6;
+}
+
+.btn-success {
+  color: #577641;
+  background-color: #DDF0D9;
 }
