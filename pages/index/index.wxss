@@ -1,0 +1,28 @@
+/**index.wxss**/
+.meeting-info {
+  margin-bottom: 45rpx;
+  padding-bottom: 20rpx;
+  border: 1rpx solid #E0E0E0;
+  background-color: white;
+  width: 680rpx;
+}
+
+.meeting-info image {
+  width: 100%;
+  height: 340rpx;
+}
+
+.meeting-info .meeting-content {
+  padding: 0 20rpx;
+  font-size: .8em;
+}
+
+.meeting-content .title {
+  min-height: 3em;
+  font-weight: bold;
+}
+
+.meeting-content .extra {
+  font-size: .8em;
+  color: #826F6F;
+}
