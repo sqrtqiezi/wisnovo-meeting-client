@@ -2,7 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/meeting/meeting",
-    "pages/logs/logs"
+    "pages/profile/profile"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -24,7 +24,7 @@
       },
       {
         "text": "我的",
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/profile/profile",
         "iconPath": "images/icon_user.png",
         "selectedIconPath": "images/icon_user_HL.png"
       }

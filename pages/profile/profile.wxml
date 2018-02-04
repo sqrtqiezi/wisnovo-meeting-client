@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="header">
+    <text>我的活动</text>
+  </view>
+  <navigator open-type="navigate" class="meeting-info"
+    url="/pages/meeting/meeting?id={{meeting.id}}"
+    wx:for="{{meetings}}" wx:key="meeting"
+    wx:for-index="idx" wx:for-item="meeting">
+    <image src="{{meeting.cover_small_url}}" />
+    <view class="meeting-content">
+      <view class="title">{{meeting.title}}</view>
+      <view class="extra">活动时间：{{meeting.started_at_short}}</view>
+    </view>
+  </navigator>
+  <button wx:if="{{currentPage < totalPages}}" class="btn-link" bindtap="loadMoreMeetings"> 点击加载更多活动 </button>
+</view>
+  

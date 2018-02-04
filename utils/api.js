@@ -5,7 +5,7 @@ const BASE_HEADER = {
   'Accept': 'application/prs.wisnovo-meetings.v1+json'
 }
 
-function baseRequest(api, header, successCode = 200) {
+function baseRequest(api, header, method = 'GET', successCode = 200) {
   return new Promise((resolve, reject) => {
     wx.showLoading({ title: '加载中...', mask: true })
     wx.request({
@@ -14,6 +14,7 @@ function baseRequest(api, header, successCode = 200) {
         ...BASE_HEADER,
         ...header
       },
+      method,
       success: function(res) {
         if (res.statusCode === successCode) {
           resolve(res)
@@ -39,6 +40,20 @@ function getAllMeetings(page = 1) {
 function getMeeting(id) {
   const api = `${BASE_URL}/api/meetings/${id}`
   return baseRequest(api)
+}
+
+function signUpMeeting(id, accessKey) {
+  const api = `${BASE_URL}/api/meetings/${id}/sign-up`
+  return baseRequest(api, {
+    'Authorization': `Bearer ${accessKey}`
+  }, 'PUT')
+}
+
+function getSignedMeetings(accessKey) {
+  const api = `${BASE_URL}/api/signed-meetings`
+  return baseRequest(api, {
+    'Authorization': `Bearer ${accessKey}`
+  })
 }
 
 function checkLogin() {
@@ -71,5 +86,7 @@ function checkLogin() {
 module.exports = {
   getAllMeetings,
   getMeeting,
+  signUpMeeting,
+  getSignedMeetings,
   checkLogin
 }

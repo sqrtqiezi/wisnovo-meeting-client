@@ -1,9 +1,11 @@
 //index.js
 const api = require('../../utils/api.js')
 const Wxmlify = require('../../wxmlify/wxmlify.js')
+const app = getApp()
 
 Page({
   data: {
+    id: 0,
     title: '',
     cover_small_url: '',
     address: '',
@@ -22,7 +24,7 @@ Page({
     api.getMeeting(options.id)
       .then(res => {
         const data = res.data.data
-        const { 
+        const {
           title,
           cover_small_url,
           address,
@@ -46,6 +48,7 @@ Page({
         }]
 
         this.setData({
+          id: options.id,
           title,
           cover_small_url,
           address,
@@ -68,7 +71,11 @@ Page({
   },
 
   handleSignUp(e) {
-    console.log(e);
+    const accessKey = app.globalData.accessKey
+    api.signUpMeeting(this.data.id, accessKey)
+      .then(res => {
+        console.log(res)
+      })
   },
 
   hanldeCheckIn(e) {
