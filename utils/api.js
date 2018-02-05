@@ -82,7 +82,12 @@ function getMeeting(id) {
 
 function signUpMeeting(id) {
   const api = `${BASE_URL}/api/meetings/${id}/sign-up`
-  return baseRequest(api, 'PUT', 201)
+  return baseRequest(api, 'PUT', 204)
+}
+
+function checkInMeeting(id) {
+  const api = `${BASE_URL}/api/meetings/${id}/check-in`
+  return baseRequest(api, 'PUT', 204)
 }
 
 function getSignedMeetings() {
@@ -121,6 +126,7 @@ module.exports = {
   getAllMeetings,
   getMeeting,
   signUpMeeting,
+  checkInMeeting,
   getSignedMeetings,
   checkLogin
 }

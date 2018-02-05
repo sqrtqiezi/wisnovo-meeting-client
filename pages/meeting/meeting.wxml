@@ -31,9 +31,9 @@
       </view>
     </block>
     <view class="control-panel">
-      <button class="btn-sm btn-info" bindtap="handleSignUp">报名</button>
-      <!--<button class="btn-sm btn-primary" bindtap="hanldeCheckIn">签到</button>
-      <button class="btn-sm btn-success">互动</button>-->
+      <button wx:if="{{!is_signed}}" class="btn-sm btn-info" bindtap="handleSignUp">报名</button>
+      <button wx:elif="{{!is_checked}}" class="btn-sm btn-primary" bindtap="hanldeCheckIn">签到</button>
+      <button wx:else class="btn-sm btn-success">互动</button>
     </view>
   </view>
 </view>
