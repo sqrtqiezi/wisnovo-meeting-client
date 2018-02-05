@@ -1,5 +1,4 @@
-const api = require('../../utils/api.js')
-const app = getApp()
+const api = require('../../utils/api')
 
 Page({
   data: {
@@ -7,11 +6,18 @@ Page({
   },
 
   onLoad() {
-    const accessKey = app.globalData.accessKey
-    api.getSignedMeetings(accessKey)
+    console.log('on load')
+  },
+
+  onReady() {
+    api.getSignedMeetings()
       .then(res => {
         const meetings = res.data.data
         this.setData({ meetings })
       })
+  },
+
+  onShow() {
+    console.log('on show')
   }
 })

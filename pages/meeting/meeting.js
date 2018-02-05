@@ -1,7 +1,6 @@
 //index.js
-const api = require('../../utils/api.js')
+const api = require('../../utils/api')
 const Wxmlify = require('../../wxmlify/wxmlify.js')
-const app = getApp()
 
 Page({
   data: {
@@ -71,8 +70,7 @@ Page({
   },
 
   handleSignUp(e) {
-    const accessKey = app.globalData.accessKey
-    api.signUpMeeting(this.data.id, accessKey)
+    api.signUpMeeting(this.data.id)
       .then(res => {
         console.log(res)
       })

@@ -1,3 +1,7 @@
+//utils/util.js
+const app = getApp();
+console.log('test in util', app);
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1

@@ -1,34 +1,72 @@
+//utils/api.js
 const BASE_URL = 'http://meeting.local'
-
 const BASE_HEADER = {
   'content-type': 'application/json',
   'Accept': 'application/prs.wisnovo-meetings.v1+json'
 }
 
-function baseRequest(api, header, method = 'GET', successCode = 200) {
-  return new Promise((resolve, reject) => {
-    wx.showLoading({ title: '加载中...', mask: true })
+function baseRequest(api, method = 'GET', successCode = 200) {
+  const app = getApp()
+  let isRetried = false
+
+  const doRequest = (resolve, reject) => {
+    const accessKey = app.globalData.accessKey
+    const header = {
+      ...BASE_HEADER,
+      'Authorization': `Bearer ${accessKey}`
+    }
     wx.request({
       url: api,
-      header: {
-        ...BASE_HEADER,
-        ...header
-      },
-      method,
-      success: function(res) {
+      header, method,
+      success(res) {
         if (res.statusCode === successCode) {
+          resolve(res)
+        } else if(res.statusCode === 401 && !isRetried) {
+          // 仅可重试一次 request 请求
+          isRetried = true;
+          refreshAccessToken(() => {
+            doRequest(resolve, reject)
+          }, reject)
+        } else {
+          reject(res)
+        }
+      },
+      fail(error) {
+        reject(error)
+      },
+      complete() {
+        wx.hideLoading()
+      }
+    })
+  }
+
+  const refreshAccessToken = (resolve, reject) => {
+    const accessKey = app.globalData.accessKey
+    const header = {
+      ...BASE_HEADER,
+      'Authorization': `Bearer ${accessKey}`
+    }
+    wx.request({
+      url: `${BASE_URL}/api/authorizations/current`,
+      header,
+      method: 'PUT',
+      success(res) {
+        if (res.statusCode === 200) {
+          app.globalData.accessKey = res.data.access_token
           resolve(res)
         } else {
           reject(res)
         }
       },
-      fail: function(error) {
+      fail(error) {
         reject(error)
-      },
-      complete: function() {
-        wx.hideLoading()
       }
     })
+  }
+
+  return new Promise((resolve, reject) => {
+    wx.showLoading({ title: '加载中...', mask: true })
+    doRequest(resolve, reject)
   })
 }
 
@@ -42,18 +80,14 @@ function getMeeting(id) {
   return baseRequest(api)
 }
 
-function signUpMeeting(id, accessKey) {
+function signUpMeeting(id) {
   const api = `${BASE_URL}/api/meetings/${id}/sign-up`
-  return baseRequest(api, {
-    'Authorization': `Bearer ${accessKey}`
-  }, 'PUT')
+  return baseRequest(api, 'PUT', 201)
 }
 
-function getSignedMeetings(accessKey) {
+function getSignedMeetings() {
   const api = `${BASE_URL}/api/signed-meetings`
-  return baseRequest(api, {
-    'Authorization': `Bearer ${accessKey}`
-  })
+  return baseRequest(api)
 }
 
 function checkLogin() {

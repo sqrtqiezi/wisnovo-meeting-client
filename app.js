@@ -1,5 +1,6 @@
-const api = require('./utils/api.js')
 //app.js
+const api = require('./utils/api')
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -34,6 +35,8 @@ App({
     })
   },
   globalData: {
+    sessionKey: null,
+    accessKey: null,
     userInfo: null
   }
 })

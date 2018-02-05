@@ -1,6 +1,5 @@
 //index.js
-const api = require('../../utils/api.js')
-const app = getApp()
+const api = require('../../utils/api')
 
 Page({
   data: {
@@ -9,7 +8,7 @@ Page({
     totalPages: 1
   },
 
-  onLoad: function () {
+  onReady() {
     this.loadMoreMeetings()
   },
 
@@ -18,6 +17,7 @@ Page({
       return
     }
     const page = this.data.currentPage + 1
+
     api.getAllMeetings(page)
       .then(res => {
         const meetings = [
