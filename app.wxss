@@ -26,10 +26,7 @@ page {
 }
 
 .btn-sm {
-  display: inline-block;
-  font-size: .6em;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+  font-size: .8em;
 }
 
 .btn-link {

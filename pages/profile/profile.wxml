@@ -1,8 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="header">
-    <text>我的活动</text>
-  </view>
   <navigator open-type="navigate" class="meeting-info"
     url="/pages/meeting/meeting?id={{meeting.id}}"
     wx:for="{{meetings}}" wx:key="meeting"

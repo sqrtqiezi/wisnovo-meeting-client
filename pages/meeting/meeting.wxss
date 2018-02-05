@@ -13,7 +13,7 @@ Page {
 
 .header .title {
   position: absolute;
-  padding: 0 20rpx;
+  padding: 0 40rpx;
   bottom: 20rpx;
   left: 0;
   color: white;
@@ -34,7 +34,5 @@ Page {
 }
 
 .meeting-info .control-panel {
-  display: flex;
-  justify-content: center;
   margin-top: 30rpx;
 }
