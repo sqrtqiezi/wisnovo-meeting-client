@@ -97,6 +97,7 @@ function getSignedMeetings() {
 
 function checkLogin() {
   return new Promise((resolve, reject) => {
+    wx.showLoading({ title: '登录中...', mask: true })
     wx.login({
       success: res => {
         if (res.code) {
@@ -112,6 +113,9 @@ function checkLogin() {
               } else {
                 console.log('获取用户登录态失败！', res)
               }
+            },
+            complete: function(res) {
+              wx.hideLoading()
             }
           })
         } else {
